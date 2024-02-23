@@ -1,0 +1,15 @@
+/* Buttons */
+@import url('./button.css');
+
+.root {
+    -fx-background-image: url('../images/background.png');
+    -fx-background-size: cover; /* You can use 'contain' or other values depending on your preference */
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.main-title {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}

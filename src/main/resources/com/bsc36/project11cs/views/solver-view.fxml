@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane stylesheets="@../css/solver.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <Pane id="leftpane" prefHeight="501.0" prefWidth="600.0" styleClass="root">
+        </Pane>
+    </center>
+    <right>
+        <Pane prefHeight="501.0" prefWidth="300.0" style="-fx-background-color: #0D0D0D;">
+            <children>
+                <Label alignment="TOP_CENTER" layoutY="21.0" prefHeight="22.0" prefWidth="298.0" text="3D PACKING SOLVER" textFill="#f2f2f2">
+                    <font>
+                        <Font name="Calibri Bold" size="19.0" />
+                    </font>
+                </Label>
+                <Label layoutX="25.0" layoutY="176.0" text="Values" textFill="#f2f2f2" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="24.0" layoutY="270.0" text="Quantity" textFill="#f2f2f2">
+                    <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                    </font>
+                </Label>
+                <CheckBox id="unlimited" layoutX="203.0" layoutY="273.0" mnemonicParsing="false" text="Unlimited" textFill="#f2f2f2">
+                    <font>
+                        <Font name="Calibri Bold" size="12.0" />
+                    </font>
+                </CheckBox>
+                <TextField id="qa" alignment="CENTER" layoutX="26.0" layoutY="312.0" prefHeight="9.0" prefWidth="75.0" promptText="Quantity A">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                    <font>
+                        <Font name="Calibri" size="12.0" />
+                    </font>
+                </TextField>
+                <TextField id="qc" alignment="CENTER" layoutX="201.0" layoutY="312.0" prefHeight="9.0" prefWidth="75.0" promptText="Quantity C">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                    <font>
+                        <Font name="Calibri" size="12.0" />
+                    </font>
+                </TextField>
+                <TextField id="qb" alignment="CENTER" layoutX="113.0" layoutY="312.0" prefHeight="9.0" prefWidth="75.0" promptText="Quantity B">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                    <font>
+                        <Font name="Calibri" size="12.0" />
+                    </font>
+                </TextField>
+                <TextField id="va" alignment="CENTER" layoutX="25.0" layoutY="215.0" prefHeight="9.0" prefWidth="75.0" promptText="Value A">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                    <font>
+                        <Font name="Calibri" size="12.0" />
+                    </font>
+                </TextField>
+                <TextField id="vc" alignment="CENTER" layoutX="200.0" layoutY="215.0" prefHeight="9.0" prefWidth="75.0" promptText="Value C">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                    <font>
+                        <Font name="Calibri" size="12.0" />
+                    </font>
+                </TextField>
+                <TextField id="vb" alignment="CENTER" layoutX="112.0" layoutY="215.0" prefHeight="9.0" prefWidth="75.0" promptText="Value B">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                    <font>
+                        <Font name="Calibri" size="12.0" />
+                    </font>
+                </TextField>
+            <GridPane alignment="TOP_CENTER" layoutX="2.0" layoutY="82.0" prefHeight="111.0" prefWidth="295.0" vgap="12.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="143.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                      <ComboBox id="algo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="ALGORITHM" value="Greedy Algorithm" GridPane.rowIndex="1">
+                          <cursor>
+                              <Cursor fx:constant="HAND" />
+                          </cursor>
+                          <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                  <String fx:value="Genetic Algorithm" />
+                                  <String fx:value="Greedy Algorithm" />
+                                  <String fx:value="Dancing Links" />
+                              </FXCollections>
+                          </items>
+                      </ComboBox>
+                      <ComboBox id="type" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="BLOCK TYPE" value="Parcels">
+                          <cursor>
+                              <Cursor fx:constant="HAND" />
+                          </cursor>
+                          <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                  <String fx:value="Pentominoes" />
+                                  <String fx:value="Parcels" />
+                              </FXCollections>
+                          </items>
+                      </ComboBox>
+               </children>
+            </GridPane>
+            <GridPane gridLinesVisible="true" layoutX="55.0" layoutY="354.0" prefHeight="61.0" prefWidth="200.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+      
+                                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Current Value" textAlignment="CENTER" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="12.0" />
+                          </font>
+                      </Label>
+                      <Label id="score" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="0" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+                          <font>
+                              <Font name="Calibri Bold" size="13.0" />
+                          </font>
+                      </Label>
+               </children>
+            </GridPane>
+            <GridPane hgap="12.0" layoutX="2.0" layoutY="450.0" prefHeight="30.0" prefWidth="297.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                      <Button id="sub" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" styleClass="button-common" text="Find solution" textFill="#f2f2f2">
+                          <font>
+                              <Font name="Calibri Bold" size="15.0" />
+                          </font>
+                          <cursor>
+                              <Cursor fx:constant="HAND" />
+                          </cursor>
+                      </Button>
+                      <Button id="stop" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button-red" text="Stop search" textFill="#f2f2f2" GridPane.columnIndex="1">
+                          <font>
+                              <Font name="Calibri Bold" size="15.0" />
+                          </font>
+                          <cursor>
+                              <Cursor fx:constant="HAND" />
+                          </cursor>
+                      </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
+            </children>
+        </Pane>
+    </right>
+</BorderPane>

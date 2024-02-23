@@ -1,0 +1,65 @@
+/* Common styles for all buttons */
+
+.button-common, .button-base, .button-red, .button-green, .button-gold {
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+    -fx-text-fill: #fff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0, 0, 0);
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-alignment: center;
+    -fx-padding: 10px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-transition: background 0.3s, color 0.3s;
+}
+
+.button-common {
+    -fx-background-color: rgb(51,82,101); /* Neutral Gray Background */
+}
+
+/* Hover state */
+.button-common:hover {
+    -fx-background-color: rgb(97,124,137); /* Darker blue on hover */
+}
+
+/* Pressed state */
+.button-common:pressed {
+    -fx-background-color: rgb(97,124,137); /* Even darker blue on click */
+}
+
+.button-red {
+    -fx-background-color: rgb(153,51,51); /* Neutral Gray Background */
+}
+
+.button-red:hover {
+    -fx-background-color: rgb(150,51,55); /* Darker blue on hover */
+}
+
+.button-red:pressed {
+    -fx-background-color: rgb(140,51,55); /* Even darker blue on click */
+}
+
+.button-green {
+    -fx-background-color: #4CAF50; /* Neutral Gray Background */
+}
+
+.button-green:hover {
+    -fx-background-color: #388E3C; /* Darker blue on hover */
+}
+
+.button-green:pressed {
+    -fx-background-color: #1B5E20; /* Even darker blue on click */
+}
+
+.button-gold {
+    -fx-background-color: #FFC107; /* Neutral Gray Background */
+}
+
+.button-gold:hover {
+    -fx-background-color: #FFA000; /* Darker blue on hover */
+}
+
+.button-gold:pressed {
+    -fx-background-color: #FF6F00; /* Even darker blue on click */
+}
