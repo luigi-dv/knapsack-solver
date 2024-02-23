@@ -1,8 +1,8 @@
-# Project 1-1 Repair Assignment
+# Knapsack Solver
 
 [![Knapsack Solver Image](https://github.com/luigi-dv/knapsack-solver/actions/workflows/docker-image.yml/badge.svg)](https://github.com/luigi-dv/knapsack-solver/actions/workflows/docker-image.yml)
 
-Knapsack Problem Solver is a Java application that solves the Knapsack Problem using a Genetic Algorithm. The application allows the user to define the parameters of the problem and the algorithm, and then run the algorithm to solve the problem. The application also allows the user to save the results of the algorithm to a file.
+Knapsack Solver is a Java application that solves the Knapsack Problem using a Genetic Algorithm. The application allows the user to define the parameters of the problem and the algorithm, and then run the algorithm to solve the problem. The application also allows the user to save the results of the algorithm to a file.
 
 ## Getting Started
 
@@ -12,8 +12,8 @@ To get a local copy up and running follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://gitlab.maastrichtuniversity.nl/bcs_group36_2023/project-1-1.git 
-   cd project-1-1
+   git clone https://github.com/luigi-dv/knapsack-solver
+   cd knapsack-solver
    ```
 2. Install Maven dependencies
    ```sh
