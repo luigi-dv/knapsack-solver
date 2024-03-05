@@ -1,19 +1,18 @@
 package com.bsc36.project11cs.domain.services;
 
 import com.bsc36.project11cs.domain.entities.knapsack.Knapsack;
+import com.bsc36.project11cs.domain.entities.knapsack.KnapsackBase;
 import com.bsc36.project11cs.domain.entities.parcel.Parcel;
 
-/**
- * BackTrack class
- */
+
 public class BackTrack {
-    private final Knapsack knapsack;
+    private final KnapsackBase<Parcel> knapsack;
 
     /**
      * Constructor
      * @param knapsack the knapsack to solve
      */
-    public BackTrack(Knapsack knapsack) {
+    public BackTrack(KnapsackBase<Parcel> knapsack) {
         this.knapsack = knapsack;
     }
 
@@ -61,7 +60,7 @@ public class BackTrack {
                 for (int z = 0; z < knapsack.getCargoSpace().getWidth(); z++) {
 
                     if (knapsack.canPlaceParcel(rotatedShape, x, y, z)) {
-                        knapsack.addParcel(parcel, x, y, z);
+                        knapsack.placeParcel(parcel, x, y, z);
 
                         if (knapsack.introducesHoles(rotatedShape, x, y, z)) {
                             knapsack.removeParcel(parcel, x, y, z);

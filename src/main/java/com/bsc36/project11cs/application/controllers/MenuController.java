@@ -1,10 +1,8 @@
 package com.bsc36.project11cs.application.controllers;
 
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import java.io.IOException;
+import javafx.event.ActionEvent;
 
 
 public class MenuController extends BaseController {

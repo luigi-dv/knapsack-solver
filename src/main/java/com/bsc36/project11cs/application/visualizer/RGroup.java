@@ -10,7 +10,7 @@ import javafx.scene.transform.Translate;
 
 public class RGroup extends SmartGroup {
 
-    // The first thing to allow three dimensional perspective is to calculate when the object needs to translate due to a change of perspective
+    // The first thing to allow three-dimensional perspective is to calculate when the object needs to translate due to a change of perspective
 
     public Translate translate  = new Translate(); 
 
@@ -28,7 +28,7 @@ public class RGroup extends SmartGroup {
 
     public Scale scale = new Scale();
 
-    // Instatiate a superclass object and allow the group to transform
+    // Instantiate a superclass object and allow the group to transform
 
     public RGroup() {
         super(); 

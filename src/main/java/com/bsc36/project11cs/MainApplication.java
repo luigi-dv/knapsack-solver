@@ -1,8 +1,27 @@
 package com.bsc36.project11cs;
 
-import com.bsc36.project11cs.domain.entities.knapsack.Knapsack;
-import com.bsc36.project11cs.domain.entities.knapsack.KnapsackGA;
+import com.bsc36.project11cs.domain.entities.knapsack.KnapsackBase;
+import com.bsc36.project11cs.domain.entities.knapsack.KnapsackValue;
 import com.bsc36.project11cs.domain.entities.parcel.Parcel;
+import com.bsc36.project11cs.domain.entities.parcel.ValueParcel;
+import javafx.scene.*;
+import java.util.Objects;
+import javafx.stage.Stage;
+import java.io.IOException;
+import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.paint.Color;
+import javafx.application.Platform;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.transform.Rotate;
+import javafx.application.Application;
+import javafx.scene.input.ScrollEvent;
+import javafx.beans.property.DoubleProperty;
+import java.util.concurrent.CompletableFuture;
+import javafx.beans.property.SimpleDoubleProperty;
 import com.bsc36.project11cs.domain.services.BackTrack;
 import com.bsc36.project11cs.domain.services.GeneticAlgo;
 import com.bsc36.project11cs.infrastructure.configuration.BasicConfig;
@@ -12,25 +31,6 @@ import com.bsc36.project11cs.application.visualizer.ArrayVisualization;
 import com.bsc36.project11cs.application.visualizer.Gravity;
 import com.bsc36.project11cs.application.visualizer.InstructionPanel;
 import com.bsc36.project11cs.application.visualizer.SmartGroup;
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.*;
-import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.transform.Rotate;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * MainApplication class
@@ -146,9 +146,8 @@ public class MainApplication extends Application {
      * Show a view in the stage
      *
      * @param knapsack Knapsack Object
-     * @throws IOException IOException
      */
-    public void showCargoSpaceBacktrack(Knapsack knapsack) throws IOException {
+    public void showCargoSpaceBacktrack(KnapsackBase<Parcel> knapsack) {
         // Get the cargo space
         CargoSpace cargoSpace = knapsack.getCargoSpace();
 
@@ -189,9 +188,8 @@ public class MainApplication extends Application {
     /**
      * Show a view in the stage
      * @param knapsack Knapsack Object
-     * @throws IOException IOException
      */
-    public void showCargoSpaceValues(KnapsackGA knapsack) throws IOException {
+    public void showCargoSpaceValues(KnapsackValue<ValueParcel> knapsack) {
         // Get the cargo space
         CargoSpace cargoSpace = knapsack.getCargoSpace();
 
@@ -235,7 +233,7 @@ public class MainApplication extends Application {
         //Parcel parcel = Parcel.createParcelFromType('U');
 
         // Set the parcel in the cargo space
-        // BasicConfig.BASIC_CARGO_SPACE.addParcel(parcel, 0, 0, 0);
+        // BasicConfig.BASIC_CARGO_SPACE.placeParcel(parcel, 0, 0, 0);
     }
 
 
