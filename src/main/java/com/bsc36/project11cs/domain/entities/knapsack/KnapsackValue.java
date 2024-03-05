@@ -1,14 +1,12 @@
 package com.bsc36.project11cs.domain.entities.knapsack;
 
+import com.bsc36.project11cs.domain.entities.parcel.Parcel;
 import com.bsc36.project11cs.domain.entities.parcel.ValueParcel;
-import com.bsc36.project11cs.infrastructure.configuration.BasicConfig;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class KnapsackValue extends KnapsackBase{
-    protected final ValueParcel parcel1;
-    protected final ValueParcel parcel2;
-    protected final ValueParcel parcel3;
+public class KnapsackValue<T extends ValueParcel> extends KnapsackBase<T> {
     protected int parcelsUsed;
     protected int score;
 
@@ -18,12 +16,8 @@ public class KnapsackValue extends KnapsackBase{
      * @param parcel2 ValueParcel 2
      * @param parcel3 ValueParcel 3
      */
-    public KnapsackValue(ValueParcel parcel1, ValueParcel parcel2, ValueParcel parcel3) {
-        super(BasicConfig.BASIC_CARGO_SPACE);
-        // Assign to instance variables
-        this.parcel1 = parcel1;
-        this.parcel2 = parcel2;
-        this.parcel3 = parcel3;
+    public KnapsackValue(T parcel1, T parcel2, T parcel3) {
+        super(parcel1, parcel2, parcel3);
     }
 
     public void setScore(int score) {
@@ -89,42 +83,56 @@ public class KnapsackValue extends KnapsackBase{
         }
         return cube;
     }
-    /**
-     * Empty the grid
-     */
-    private void emptyGrid() {
-        this.cargoSpace.clearCargoSpace();
-        for (int i = 0; i < cargoSpace.getLength(); i++) {
-            for (int j = 0; j < cargoSpace.getHeight(); j++) {
-                for (int k = 0; k < cargoSpace.getWidth(); k++) {
-                    cargoSpace.getShape()[i][j][k] = 0;
-                }
-            }
-        }
-    }
 
     /**
      * Place packages with points
      *
      * @param pack int[][][] Package
      */
-    private void placePackagesWithPoints(int[][][] pack) {
-        for (int i = 0; i < cargoSpace.getShape().length; i++) {
-            for (int j = 0; j < cargoSpace.getShape()[i].length; j++) { // Changed from 'i' to 'j'
-                for (int k = 0; k < cargoSpace.getShape()[i][j].length; k++) {
-                    if (canPlacePackage(i, j, k, pack)) {
-                        placePackage(i, j, k, pack);
-                        if (Arrays.deepEquals(pack, parcel1.getShape())) {
-                            cargoSpace.addParcel(parcel1, i, j, k);
+    private void placePackagesWithPoints(Parcel pack) {
+        int[][][] grid = this.cargoSpace.getShape();
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) { // Changed from 'i' to 'j'
+                for (int k = 0; k < grid[i][j].length; k++) {
+                    if (canPlacePackage(i, j, k, pack.getShape())) {
+                        // System.out.println("placing package at " + "x: "+ i + " z: " + j + " y: " + k);
+                        placePackage(i, j, k, pack.getShape());
+                        if (Arrays.deepEquals(pack.getShape(), parcel1.getShape())) {
                             score += parcel1.getValue();
                         }
-                        if (Arrays.deepEquals(pack, parcel2.getShape())) {
-                            cargoSpace.addParcel(parcel2, i, j, k);
+                        if (Arrays.deepEquals(pack.getShape(), parcel2.getShape())) {
                             score += parcel2.getValue();
                         }
-                        if (Arrays.deepEquals(pack, parcel3.getShape())) {
-                            cargoSpace.addParcel(parcel3, i, j, k);
+                        if (Arrays.deepEquals(pack.getShape(), parcel3.getShape())) {
                             score += parcel3.getValue();
+                        }
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Place packages without points
+     * @param parcel Parcel
+     */
+    private void placePackagesWithoutPoints(Parcel parcel) {
+        int[][][] grid = this.cargoSpace.getShape();
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) { // Changed from 'i' to 'j'
+                for (int k = 0; k < grid[i][j].length; k++) {
+                    if (canPlacePackage(i, j, k, parcel.getShape())) {
+                        // System.out.println("FINAL placing package at " + "x: "+ i + " z: " + j + " y: " + k);
+                        placePackage(i, j, k, parcel.getShape());
+                        if (Arrays.deepEquals(parcel.getShape(), parcel1.getShape())) {
+                            cargoSpace.placeParcel(parcel1, i, j, k);
+                        }
+                        if (Arrays.deepEquals(parcel.getShape(), parcel2.getShape())) {
+                            cargoSpace.placeParcel(parcel2, i, j, k);
+                        }
+                        if (Arrays.deepEquals(parcel.getShape(), parcel3.getShape())) {
+                            cargoSpace.placeParcel(parcel3, i, j, k);
                         }
                         return;
                     }
@@ -183,6 +191,31 @@ public class KnapsackValue extends KnapsackBase{
             }
         }
         parcelsUsed++;
+    }
+
+    /**
+     * Place packages without points
+     * @param winningChromosomes Parcel
+     */
+    public void updateCargoSpace(ArrayList<Parcel> winningChromosomes){
+        emptyGrid();
+        for(int i = 0; i < winningChromosomes.size(); i++){
+            placePackagesWithoutPoints(winningChromosomes.get(i));
+        }
+        cargoSpace.setShape(this.cargoSpace.getShape());
+    }
+
+    /**
+     * Chromosome translator
+     * @param chromosomes ArrayList<Parcel> Chromosomes
+     */
+    public void chromosomeTranslator(ArrayList<Parcel> chromosomes) {
+        emptyGrid();
+        parcelsUsed = 0;
+        score = 0;
+        for (Parcel chromosome : chromosomes) {
+            placePackagesWithPoints(chromosome);
+        }
     }
 
 }

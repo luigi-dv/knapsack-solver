@@ -1,7 +1,10 @@
 package com.bsc36.project11cs.application.controllers;
 
 import com.bsc36.project11cs.MainApplication;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
+import com.bsc36.project11cs.domain.entities.parcel.Parcel;
+
 
 public class BaseController {
     public Stage stage;
@@ -27,4 +30,5 @@ public class BaseController {
     public void setMain(MainApplication mainApp) {
         this.main = mainApp;
     }
+
 }

@@ -2,14 +2,15 @@ package com.bsc36.project11cs.domain.services;
 
 import com.bsc36.project11cs.domain.entities.CargoSpace;
 import com.bsc36.project11cs.domain.entities.Individual;
-import com.bsc36.project11cs.domain.entities.knapsack.KnapsackGA;
+import com.bsc36.project11cs.domain.entities.knapsack.KnapsackValue;
+import com.bsc36.project11cs.domain.entities.parcel.ValueParcel;
 import com.bsc36.project11cs.infrastructure.configuration.BasicConfig;
 
 import java.util.*;
 
 
 public class GeneticAlgo{
-    private final KnapsackGA knapsackGA;
+    private final KnapsackValue<ValueParcel>  knapsack;
     private ArrayList<Individual> populationList = new ArrayList<>();
     private final int population = 300;
     private int previousMax = 0;
@@ -19,10 +20,10 @@ public class GeneticAlgo{
 
     /**
      * Constructor
-     * @param knapsackGA the knapsackGA to use
+     * @param knapsack the knapsackGA to use
      */
-    public GeneticAlgo(KnapsackGA knapsackGA){
-        this.knapsackGA = knapsackGA;
+    public GeneticAlgo(KnapsackValue<ValueParcel>  knapsack){
+        this.knapsack = knapsack;
     }
     public void setMutationRate(double newMutation){
         this.mutationRate = newMutation;
@@ -32,7 +33,7 @@ public class GeneticAlgo{
      * Runs the genetic algorithm (Entry point)
      */
     public void run(){
-        CargoSpace cargoSpace = knapsackGA.getCargoSpace();
+        CargoSpace cargoSpace = knapsack.getCargoSpace();
         // Clear the cargo space
         cargoSpace.clearCargoSpace();
         // Run the genetic algorithm
@@ -48,7 +49,7 @@ public class GeneticAlgo{
                 reInitializePopulation();
             }
         }
-        knapsackGA.updateCargoSpace(populationList.get(0).getChromosomes());
+        knapsack.updateCargoSpace(populationList.get(0).getChromosomes());
         System.out.println(populationList.get(0).getChromosomes().size());
     }
 
@@ -58,7 +59,7 @@ public class GeneticAlgo{
     private void intializePopulation(){
         populationList.clear();
         for(int i = 0; i < population; i++){
-            Individual individual = new Individual(this.knapsackGA, mutationRate);
+            Individual individual = new Individual(this.knapsack, mutationRate);
             populationList.add(individual);
         }
     }
@@ -83,7 +84,7 @@ public class GeneticAlgo{
     private void reInitializePopulation(){
         populationList.subList((int) (populationList.size()*0.15), populationList.size()).clear();
         for(int i = populationList.size(); i < population; i++){
-            populationList.add(new Individual(knapsackGA, mutationRate));
+            populationList.add(new Individual(knapsack, mutationRate));
         }
     }
 

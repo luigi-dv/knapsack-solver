@@ -1,14 +1,13 @@
 package com.bsc36.project11cs.domain.entities;
 
-import com.bsc36.project11cs.domain.entities.knapsack.KnapsackGA;
-import com.bsc36.project11cs.domain.entities.parcel.Parcel;
-
-import java.util.ArrayList;
 import java.util.Random;
-
+import java.util.ArrayList;
+import com.bsc36.project11cs.domain.entities.parcel.Parcel;
+import com.bsc36.project11cs.domain.entities.parcel.ValueParcel;
+import com.bsc36.project11cs.domain.entities.knapsack.KnapsackValue;
 
 public class Individual{
-    private final KnapsackGA knapsackGA;
+    private final KnapsackValue<ValueParcel>  knapsack;
     private ArrayList<Parcel> chromosomes;
     private final Random rn1 = new Random();
     private final double mutationProbability;
@@ -16,24 +15,24 @@ public class Individual{
 
     /**
      * Constructor
-     * @param knapsackGA the knapsackGA to use
+     * @param knapsack the knapsack to use
      * @param mutationRate the mutation rate
      */
-    public Individual(KnapsackGA knapsackGA, double mutationRate) {
+    public Individual(KnapsackValue<ValueParcel>  knapsack, double mutationRate) {
         this.mutationProbability = mutationRate;
-        this.knapsackGA = knapsackGA;
+        this.knapsack = knapsack;
         ArrayList<Parcel> chromosomes = setRandomChromosomes();
         setUpIndividual(chromosomes);
     }
 
     /**
      * Constructor
-     * @param knapsackGA the knapsackGA to use
+     * @param knapsack the knapsack to use
      * @param chromosomes the chromosomes to use
      */
-    public Individual(KnapsackGA knapsackGA, ArrayList<Parcel> chromosomes, double mutationRate){
+    public Individual(KnapsackValue<ValueParcel>  knapsack, ArrayList<Parcel> chromosomes, double mutationRate){
         this.mutationProbability = mutationRate;
-        this.knapsackGA = knapsackGA;
+        this.knapsack = knapsack;
         this.chromosomes = chromosomes;
 
         // System.out.println("Individual initialized with given chromosomes");
@@ -77,13 +76,13 @@ public class Individual{
         for (int i = 0; i < rn1.nextInt(500 - 125) + 125; i++) {
             parcelToAdd = rn1.nextInt(3);
             if (parcelToAdd == 2) {
-                temp.add(knapsackGA.getParcel1());
+                temp.add(knapsack.getParcel1());
             }
             if (parcelToAdd == 1) {
-                temp.add(knapsackGA.getParcel2());
+                temp.add(knapsack.getParcel2());
             }
             if (parcelToAdd == 0) {
-                temp.add(knapsackGA.getParcel2());
+                temp.add(knapsack.getParcel2());
             }
             Parcel parcel = temp.get(i);
             temp.remove(i);
@@ -106,13 +105,13 @@ public class Individual{
             int itemToInput = rn1.nextInt(3);
             switch (itemToInput) {
                 case 0:
-                    mutatingArrayList.set(mutationPoint, knapsackGA.getParcel1());
+                    mutatingArrayList.set(mutationPoint, knapsack.getParcel1());
                     break;
                 case 1:
-                    mutatingArrayList.set(mutationPoint, knapsackGA.getParcel2());
+                    mutatingArrayList.set(mutationPoint, knapsack.getParcel2());
                     break;
                 case 2:
-                    mutatingArrayList.set(mutationPoint, knapsackGA.getParcel3());
+                    mutatingArrayList.set(mutationPoint, knapsack.getParcel3());
                 default:
                     break;
             }
@@ -131,16 +130,16 @@ public class Individual{
         for(int i = chromosomes.size(); i < targetLength + 1; i++){
             int parcelToAdd = rn1.nextInt(3);
             if(parcelToAdd == 0){
-                chromosomes.add(knapsackGA.getParcel1());
-                // temp.add(knapsackGA.getPackageA());
+                chromosomes.add(knapsack.getParcel1());
+                // temp.add(knapsack.getPackageA());
             }
             if (parcelToAdd == 1) {
-                // temp.add(knapsackGA.getPackageB());
-                chromosomes.add(knapsackGA.getParcel2());
+                // temp.add(knapsack.getPackageB());
+                chromosomes.add(knapsack.getParcel2());
             }
             if (parcelToAdd == 2) {
-                // temp.add(knapsackGA.getPackageC());
-                chromosomes.add(knapsackGA.getParcel3());
+                // temp.add(knapsack.getPackageC());
+                chromosomes.add(knapsack.getParcel3());
             }
             Parcel item = chromosomes.get(i);
             // TODO: Suspicious 'List.remove()' in loop
@@ -200,7 +199,7 @@ public class Individual{
             childChromosomes = mutation(childChromosomes);
         }
     
-        return new Individual(this.knapsackGA, childChromosomes, mutationProbability);
+        return new Individual(this.knapsack, childChromosomes, mutationProbability);
     }
     
 
@@ -212,18 +211,18 @@ public class Individual{
         // System.out.println("Setting up individual");
         this.chromosomes = chromosomes;
         // System.out.println("Chromosomes set");
-        knapsackGA.chromosomeTranslator(chromosomes);
+        knapsack.chromosomeTranslator(chromosomes);
         // System.out.println("Chromosome translated");
-        this.score = knapsackGA.getScore();
+        this.score = knapsack.getScore();
         // System.out.println("Score:" + score);
-        int parcelsUsed = knapsackGA.getParcelsUsed();
+        int parcelsUsed = knapsack.getParcelsUsed();
         if (parcelsUsed <= chromosomes.size()) {
             chromosomes.subList(parcelsUsed, chromosomes.size()).clear();
             // System.out.println("Chromosomes cleared");
         } else {
-            // System.out.println("Number of parcels used is greater than the number of chromosomes. Cannot clear chromosomes." + knapsackGA.getParcelsUsed());
+            // System.out.println("Number of parcels used is greater than the number of chromosomes. Cannot clear chromosomes." + knapsack.getParcelsUsed());
         }
         // System.out.println(score);
-        // System.out.println(knapsackGA.getParcelsUsed());
+        // System.out.println(knapsack.getParcelsUsed());
     }
 }

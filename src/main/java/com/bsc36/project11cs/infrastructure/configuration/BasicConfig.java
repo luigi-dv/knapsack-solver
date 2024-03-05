@@ -1,12 +1,17 @@
 package com.bsc36.project11cs.infrastructure.configuration;
 
 import com.bsc36.project11cs.domain.entities.CargoSpace;
+import com.bsc36.project11cs.domain.valueobjects.Size;
 
 /**
  * Basic Config
  */
 public class BasicConfig {
-    public static final CargoSpace BASIC_CARGO_SPACE = new CargoSpace(33, 8, 5);
+    public static final int CARGO_SPACE_LENGTH = 31;
+    public static final int CARGO_SPACE_HEIGHT = 9;
+    public static final int CARGO_SPACE_WIDTH = 5;
+    public static final Size CARGO_SPACE_SIZE = new Size(CARGO_SPACE_LENGTH, CARGO_SPACE_WIDTH, CARGO_SPACE_HEIGHT);
+    public static final CargoSpace BASIC_CARGO_SPACE = new CargoSpace(CARGO_SPACE_SIZE);
     public static final int MAXIMUM_PARCEL_VALUE = 6;
     public static final int INCREASE_RATIO = 20;
 
