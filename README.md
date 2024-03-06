@@ -8,7 +8,13 @@ Knapsack Solver is a Java application that solves the Knapsack Problem using a G
 
 To get a local copy up and running follow these simple steps.
 
-### Installation
+### Prerequisites
+
+- Java SDK 21
+- Maven
+- JavaFX
+
+### Installation (Maven)
 
 1. Clone the repo
    ```sh
@@ -23,24 +29,15 @@ To get a local copy up and running follow these simple steps.
    ```sh
     mvn compile
    ```
-4. ```sh
+4. Run the project
+   ```sh
     mvn clean package
    ```
-5. Run the project
-   ```sh
-    java --module-path /path/to/javafx-sdk-21.0.2/lib --add-modules javafx.controls,javafx.fxml -jar target/project11cs-3.0.jar
-   ```
-### Prerequisites
 
-- Java SDK 21
-- Maven
-
-### Running the application
-
-To run the application, navigate to the directory containing the JAR file and run the following command:
-
-```bash
-java --module-path /path/to/javafx-sdk-21.0.2/lib --add-modules javafx.controls,javafx.fxml -jar project11cs-3.0.jar
+### Installation (Running the entry class)
+Alternatively, you can run the application directly from the MainApplication class. Navigate to the root of the project and execute the following command:
+```sh
+   java --module-path /path/to/javafx-sdk-21.0.2/lib --add-modules javafx.controls,javafx.fxml src/main/java/com/bsc36/project11cs/application/MainApplication.java
 ```
 
 ## Authors
