@@ -1,9 +1,5 @@
 package com.bsc36.project11cs;
 
-import com.bsc36.project11cs.domain.entities.knapsack.KnapsackBase;
-import com.bsc36.project11cs.domain.entities.knapsack.KnapsackValue;
-import com.bsc36.project11cs.domain.entities.parcel.Parcel;
-import com.bsc36.project11cs.domain.entities.parcel.ValueParcel;
 import javafx.scene.*;
 import java.util.Objects;
 import javafx.stage.Stage;
@@ -21,19 +17,23 @@ import javafx.application.Application;
 import javafx.scene.input.ScrollEvent;
 import javafx.beans.property.DoubleProperty;
 import java.util.concurrent.CompletableFuture;
-import javafx.beans.property.SimpleDoubleProperty;
-import com.bsc36.project11cs.domain.services.BackTrack;
-import com.bsc36.project11cs.domain.services.GeneticAlgo;
-import com.bsc36.project11cs.infrastructure.configuration.BasicConfig;
-import com.bsc36.project11cs.application.controllers.BaseController;
 import com.bsc36.project11cs.domain.entities.*;
-import com.bsc36.project11cs.application.visualizer.ArrayVisualization;
+import javafx.beans.property.SimpleDoubleProperty;
+import com.bsc36.project11cs.domain.entities.parcel.Parcel;
+import com.bsc36.project11cs.application.services.BackTrack;
 import com.bsc36.project11cs.application.visualizer.Gravity;
-import com.bsc36.project11cs.application.visualizer.InstructionPanel;
+import com.bsc36.project11cs.application.services.GeneticAlgo;
 import com.bsc36.project11cs.application.visualizer.SmartGroup;
+import com.bsc36.project11cs.domain.entities.parcel.ValueParcel;
+import com.bsc36.project11cs.domain.entities.knapsack.KnapsackBase;
+import com.bsc36.project11cs.application.controllers.BaseController;
+import com.bsc36.project11cs.domain.entities.knapsack.KnapsackValue;
+import com.bsc36.project11cs.application.visualizer.InstructionPanel;
+import com.bsc36.project11cs.infrastructure.configuration.BasicConfig;
 
 /**
- * MainApplication class
+ * The MainApplication class serves as the entry point for the JavaFX application.
+ * It manages the main stage and provides methods for navigating between different views.
  */
 public class MainApplication extends Application {
     private Stage stage;
@@ -111,15 +111,7 @@ public class MainApplication extends Application {
         showView("views/menu-view.fxml", "css/menu.css");
     }
 
-    /**
-     * Show a view in the stage
-     */
-    public void showSolver() throws IOException {
-        ArrayVisualization visualization = new ArrayVisualization();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/solver-view.fxml"));
-        String cssFile = Objects.requireNonNull(MainApplication.class.getResource("css/solver.css")).toExternalForm();
-        visualization.init(stage, loader, cssFile);
-    }
+
 
     /**
      * Show a view in the stage
@@ -190,6 +182,7 @@ public class MainApplication extends Application {
      * @param knapsack Knapsack Object
      */
     public void showCargoSpaceValues(KnapsackValue<ValueParcel> knapsack) {
+
         // Get the cargo space
         CargoSpace cargoSpace = knapsack.getCargoSpace();
 
@@ -225,15 +218,9 @@ public class MainApplication extends Application {
      * Show a view in the stage
      */
     public void showEmptyCargoSpaceView() {
+        BasicConfig.BASIC_CARGO_SPACE.clearCargoSpace();
         SmartGroup group = BasicConfig.BASIC_CARGO_SPACE.getSpace();
         cargoSpaceSetup(group, 0, 0,0,0);
-
-        // TODO: Implement Dynamic Parcel Creation and Visualization
-        // Instantiate a Parcel object and set its type
-        //Parcel parcel = Parcel.createParcelFromType('U');
-
-        // Set the parcel in the cargo space
-        // BasicConfig.BASIC_CARGO_SPACE.placeParcel(parcel, 0, 0, 0);
     }
 
 

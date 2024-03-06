@@ -1,5 +1,6 @@
 package com.bsc36.project11cs.application.controllers.services;
 
+import com.bsc36.project11cs.infrastructure.configuration.BasicConfig;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ComboBox;
@@ -60,17 +61,28 @@ public class ValueParcelsController extends ServiceController<ValueParcel> {
      * @return An array of ValueParcel objects.
      */
     private ValueParcel[] getValueParcels() {
-        ValueParcel parcelA = new ValueParcel('A', 0);
-        ValueParcel parcelB = new ValueParcel('B', 0);
-        ValueParcel parcelC = new ValueParcel('C', 0);
-        ValueParcel parcelL = new ValueParcel('L', 0);
-        ValueParcel parcelO = new ValueParcel('O', 0);
-        ValueParcel parcelP = new ValueParcel('P', 0);
-        ValueParcel parcelT = new ValueParcel('T', 0);
-        ValueParcel parcelU = new ValueParcel('U', 0);
+        if (BasicConfig.SHOW_OLD_PARCELS) {
+            ValueParcel parcelA = new ValueParcel('A', 0);
+            ValueParcel parcelB = new ValueParcel('B', 0);
+            ValueParcel parcelC = new ValueParcel('C', 0);
+            ValueParcel parcelL = new ValueParcel('L', 0);
+            ValueParcel parcelO = new ValueParcel('O', 0);
+            ValueParcel parcelP = new ValueParcel('P', 0);
+            ValueParcel parcelT = new ValueParcel('T', 0);
+            ValueParcel parcelU = new ValueParcel('U', 0);
+            // Add ValueParcels to an array
+            return new ValueParcel[]{parcelA, parcelB, parcelC, parcelL, parcelO, parcelP, parcelT, parcelU};
 
-        // Add ValueParcels to an array
-        return new ValueParcel[]{parcelA, parcelB, parcelC, parcelL, parcelO, parcelP, parcelT, parcelU};
+        } else {
+            ValueParcel parcelO = new ValueParcel('O', 0);
+            ValueParcel parcelP = new ValueParcel('P', 0);
+            ValueParcel parcelU = new ValueParcel('U', 0);
+            // Add ValueParcels to an array
+            return new ValueParcel[]{parcelO, parcelP, parcelU};
+        }
+
+
+
     }
 
     /**

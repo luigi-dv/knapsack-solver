@@ -1,23 +1,28 @@
-package com.bsc36.project11cs.domain.services;
+package com.bsc36.project11cs.application.services;
 
-import com.bsc36.project11cs.domain.entities.knapsack.Knapsack;
-import com.bsc36.project11cs.domain.entities.knapsack.KnapsackBase;
 import com.bsc36.project11cs.domain.entities.parcel.Parcel;
+import com.bsc36.project11cs.domain.entities.knapsack.KnapsackBase;
 
-
+/**
+ * The BackTrack class represents a backtracking algorithm for solving the knapsack problem with parcels.
+ * It attempts to find a valid placement for each parcel in the knapsack, considering different rotations.
+ */
 public class BackTrack {
+
     private final KnapsackBase<Parcel> knapsack;
 
     /**
-     * Constructor
-     * @param knapsack the knapsack to solve
+     * Constructor for the BackTrack class.
+     *
+     * @param knapsack The knapsack to be solved using the backtracking algorithm.
      */
     public BackTrack(KnapsackBase<Parcel> knapsack) {
         this.knapsack = knapsack;
     }
 
     /**
-     * Start the parcel solver
+     * Initiates the parcel solver using the backtracking algorithm.
+     * Prints whether a solution is found or not.
      */
     public void startParcelSolver() {
         knapsack.emptyGrid();
@@ -26,8 +31,9 @@ public class BackTrack {
     }
 
     /**
-     * Backtrack search for parcels
-     * @return true if the parcel is placed, false if the parcel is not placed
+     * Performs a backtracking search for placing parcels in the knapsack.
+     *
+     * @return True if a valid placement is found, false otherwise.
      */
     private boolean backTrackSearchParcels() {
         if (knapsack.isCargoSpaceFull()) {
@@ -49,10 +55,11 @@ public class BackTrack {
     }
 
     /**
-     * Place the parcel in all possible positions
-     * @param parcel the parcel to place
-     * @param rotatedShape the rotated shape of the parcel
-     * @return true if the parcel is placed, false if the parcel is not placed
+     * Places the parcel in all possible positions within the knapsack.
+     *
+     * @param parcel       The parcel to be placed.
+     * @param rotatedShape The rotated shape of the parcel.
+     * @return True if the parcel is successfully placed, false otherwise.
      */
     private boolean placeParcelInAllPositions(Parcel parcel, int[][][] rotatedShape) {
         for (int x = 0; x < knapsack.getCargoSpace().getLength(); x++) {

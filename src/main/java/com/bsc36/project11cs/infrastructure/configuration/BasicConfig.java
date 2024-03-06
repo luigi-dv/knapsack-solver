@@ -12,7 +12,7 @@ public class BasicConfig {
     public static final int CARGO_SPACE_WIDTH = 5;
     public static final Size CARGO_SPACE_SIZE = new Size(CARGO_SPACE_LENGTH, CARGO_SPACE_WIDTH, CARGO_SPACE_HEIGHT);
     public static final CargoSpace BASIC_CARGO_SPACE = new CargoSpace(CARGO_SPACE_SIZE);
-    public static final int MAXIMUM_PARCEL_VALUE = 6;
+    public static final boolean SHOW_OLD_PARCELS = false;
     public static final int INCREASE_RATIO = 20;
 
     public static final int GA_MAX_GENERATION = 100;

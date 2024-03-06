@@ -9,6 +9,11 @@ import com.bsc36.project11cs.domain.entities.parcel.Parcel;
 import com.bsc36.project11cs.application.visualizer.SmartGroup;
 import com.bsc36.project11cs.infrastructure.configuration.BasicConfig;
 
+/**
+ * The CargoSpace class represents the physical space where parcels are placed.
+ * It manages the visual representation of the cargo space and provides methods
+ * for placing, removing, and updating parcels within the space.
+ */
 public class CargoSpace {
     private final SmartGroup space;
     private int[][][] shape;
@@ -40,7 +45,7 @@ public class CargoSpace {
     }
 
     /**
-     * Clear the cargo space
+     * Clears the cargo space by removing all visual elements.
      */
     public void clearCargoSpace() {
         this.space.getChildren().clear();
@@ -50,16 +55,18 @@ public class CargoSpace {
     }
 
     /**
-     * Get the shape of the cargo space
-     * @return int[][][] Shape of the cargo space
+     * Gets the shape of the cargo space.
+     *
+     * @return The shape of the cargo space.
      */
     public int[][][] getShape() {
       return this.shape;
     }
 
     /**
-     * Set the shape of the cargo space
-     * @param shape Shape of the cargo space
+     * Sets the shape of the cargo space.
+     *
+     * @param shape The new shape of the cargo space.
      */
     public void setShape(int[][][] shape) {
       this.shape = shape;
@@ -67,6 +74,7 @@ public class CargoSpace {
 
     /**
      * Get the SmartGroup object
+     *
      * @return SmartGroup Object
      */
     public SmartGroup getSpace() {
@@ -77,6 +85,7 @@ public class CargoSpace {
 
     /**
      * Get the length of the cargo space
+     *
      * @return int Length of the cargo space
      */
     public int getLength() {
@@ -85,6 +94,7 @@ public class CargoSpace {
 
     /**
      * Get the width of the cargo space
+     *
      * @return int Width of the cargo space
      */
     public int getWidth() {
@@ -93,6 +103,7 @@ public class CargoSpace {
 
     /**
      * Get the height of the cargo space
+     *
      * @return int Height of the cargo space
      */
     public int getHeight() {

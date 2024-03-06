@@ -4,23 +4,16 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 
-
+/**
+ * The MenuController class controls the actions and navigation within the application's menu.
+ * It handles events triggered by various buttons to show different views and manage the application flow.
+ */
 public class MenuController extends BaseController {
 
     /**
-     * Show the knapsack view
+     * Shows the parcels view in response to the "Parcels" button click.
      *
-     * @param event ActionEvent
-     */
-    @FXML
-    private void onSolverButtonClick(ActionEvent event) throws IOException {
-        main.showSolver();
-    }
-
-    /**
-     * Show the parcels view
-     *
-     * @param event ActionEvent
+     * @param event The ActionEvent triggered by the button click.
      */
     @FXML
     private void onParcelsButtonClick(ActionEvent event) {
@@ -28,9 +21,9 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * Show the value parcels view
+     * Shows the value parcels view in response to the "Values" button click.
      *
-     * @param event ActionEvent
+     * @param event The ActionEvent triggered by the button click.
      */
     @FXML
     private void onValuesButtonClick(ActionEvent event) {
@@ -38,9 +31,9 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * Show the defined parcels view
+     * Exits the application in response to the "Exit" button click.
      *
-     * @param event ActionEvent
+     * @param event The ActionEvent triggered by the button click.
      */
     @FXML
     private void onExitButtonClick(ActionEvent event) {
@@ -48,13 +41,12 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * Show the empty cargo space view
+     * Shows the empty cargo space view in response to the "Show Cargo Space" button click.
      *
-     * @param event ActionEvent
+     * @param event The ActionEvent triggered by the button click.
      */
     @FXML
     private void onShowCargoSpace(ActionEvent event) {
         main.showEmptyCargoSpaceView();
     }
 }
-
