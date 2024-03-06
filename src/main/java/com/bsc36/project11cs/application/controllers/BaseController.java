@@ -1,34 +1,38 @@
 package com.bsc36.project11cs.application.controllers;
 
-import com.bsc36.project11cs.MainApplication;
-import javafx.collections.ObservableList;
 import javafx.stage.Stage;
-import com.bsc36.project11cs.domain.entities.parcel.Parcel;
+import com.bsc36.project11cs.MainApplication;
 
-
+/**
+ * Base controller class for managing JavaFX application views.
+ * Provides methods to set the main stage and reference to the MainApplication instance.
+ */
 public class BaseController {
+    /**
+     * The main stage for the JavaFX application.
+     */
     public Stage stage;
 
-    public static String type;
-
+    /**
+     * The MainApplication instance associated with this controller.
+     */
     public MainApplication main;
 
     /**
-     * Set Stage
+     * Sets the main stage for the controller.
      *
-     * @param stage Stage Object
+     * @param stage The JavaFX Stage object to set.
      */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
     /**
-     * Set com.bsc36.project11cs.MainApplication
+     * Sets the MainApplication instance for the controller.
      *
-     * @param mainApp MainApplication Object
+     * @param mainApp The MainApplication object to set.
      */
     public void setMain(MainApplication mainApp) {
         this.main = mainApp;
     }
-
 }

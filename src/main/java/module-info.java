@@ -30,7 +30,5 @@ module com.bsc36.project11cs {
     opens com.bsc36.project11cs.infrastructure.configuration to javafx.fxml;
     // Application Services
     exports com.bsc36.project11cs.application.services;
-    // Domain Services
-    exports com.bsc36.project11cs.domain.services;
-    opens com.bsc36.project11cs.domain.services to javafx.fxml;
+    opens com.bsc36.project11cs.application.services to javafx.fxml;
 }

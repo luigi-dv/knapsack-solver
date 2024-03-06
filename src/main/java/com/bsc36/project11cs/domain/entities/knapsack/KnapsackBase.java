@@ -108,6 +108,7 @@ public class KnapsackBase<T extends Parcel> implements Knapsack {
      * 2. Reset the flags
      */
     public void emptyGrid(){
+        this.cargoSpace.clearCargoSpace();
         for(int i = 0; i < this.cargoSpace.getLength(); i++){
             for(int j = 0; j < this.cargoSpace.getHeight(); j++){
                 for(int k = 0; k < this.cargoSpace.getWidth(); k++){
